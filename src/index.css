@@ -1,0 +1,20 @@
+body {
+  margin: 0 !important;
+}
+
+.header-bar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-search {
+    width: 300px;
+}
+
+.header-login-btn {
+    padding: 10px 30px;
+    background: #fff;
+    color: #003B44;
+    font-weight: 700;
+}
