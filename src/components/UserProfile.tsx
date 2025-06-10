@@ -61,7 +61,7 @@ export default function UserProfile() {
         <Divider sx={{ my: 1 }} />
 
         <MenuItem onClick={() => handleNavigate('/profile')}>Your github profile</MenuItem>
-        {/* <MenuItem onClick={() => handleNavigate('/create-gist')}>Create gist</MenuItem> */}
+        <MenuItem onClick={() => handleNavigate('/create-gist')}>Create gist</MenuItem>
         <MenuItem onClick={() => handleNavigate('/')}>Public gists</MenuItem>
 
 

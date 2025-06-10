@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import GistDetail from './pages/GistDetail';
 import ProtectedRoute from './ProtectedRoute';
+import CreateGist from './pages/CreateGist';
 
 
 function AppRoutes() {
@@ -11,7 +12,7 @@ function AppRoutes() {
 			<Route path="/" element={<Home />} />
 			<Route path="/gist/:id" element={<GistDetail />} />
 			<Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-			{/* <Route path="/create-gist" element={<ProtectedRoute><CreateGist /></ProtectedRoute>}/> */}
+			<Route path="/create-gist" element={<ProtectedRoute><CreateGist /></ProtectedRoute>}/>
     </Routes>
   );
 }

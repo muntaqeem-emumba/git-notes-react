@@ -33,10 +33,14 @@ export default function GistDetail() {
             <Avatar src={gist?.owner.avatar_url} alt={gist?.owner.login} />
             <Box>
               <Typography variant="subtitle1">
-                <b>{gist?.owner.login}</b> / <span style={{ color: '#6c757d' }}>{gist?.description}</span>
+                <b>{gist?.owner.login}</b> /{" "}
+                <span style={{ color: "#6c757d" }}>{gist?.description}</span>
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Created {formatDistanceToNow(new Date(gist?.created_at), { addSuffix: true })}
+                Created{" "}
+                {formatDistanceToNow(new Date(gist?.created_at), {
+                  addSuffix: true,
+                })}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {gist?.description}
@@ -55,17 +59,44 @@ export default function GistDetail() {
           <Divider sx={{ my: 3 }} />
 
           {/* File Name */}
-          <Typography variant="subtitle2" sx={{ mb: 1 }}>
-            {gist?.files && Object.keys(gist.files).length > 0 ? gist.files[Object.keys(gist.files)[0]].filename : ''}
-          </Typography>
+          {/* <Typography variant="subtitle2" sx={{ mb: 1 }}>
+            {gist?.files && Object.keys(gist.files).length > 0
+              ? gist.files[Object.keys(gist.files)[0]].filename
+              : ""}
+          </Typography> */}
 
           {/* Code Viewer */}
-          <CodeViewer 
-            rawUrl={gist?.files && Object.keys(gist.files).length > 0 ? gist.files[Object.keys(gist.files)[0]].raw_url : ''}
-            language={gist?.files && Object.keys(gist.files).length > 0 ? gist.files[Object.keys(gist.files)[0]].language : ''}
-            filename={gist?.files && Object.keys(gist.files).length > 0 ? gist.files[Object.keys(gist.files)[0]].filename : ''}
-          >
-          </CodeViewer>
+          {/* <CodeViewer
+            rawUrl={
+              gist?.files && Object.keys(gist.files).length > 0
+                ? gist.files[Object.keys(gist.files)[0]].raw_url
+                : ""
+            }
+            language={
+              gist?.files && Object.keys(gist.files).length > 0
+                ? gist.files[Object.keys(gist.files)[0]].language
+                : ""
+            }
+            filename={
+              gist?.files && Object.keys(gist.files).length > 0
+                ? gist.files[Object.keys(gist.files)[0]].filename
+                : ""
+            }
+          ></CodeViewer> */}
+          {gist?.files &&
+            Object.entries(gist.files).map(([filename, file]) => (
+              <div key={filename} style={{ marginBottom: "50px" }}>
+                <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                  {filename ? filename : "No filename provided"}
+                </Typography>
+                <CodeViewer
+                  rawUrl={file.raw_url}
+                  language={file.language}
+                  filename={file.filename}
+                  height={"800px"}
+                />
+              </div>
+            ))}
         </Paper>
       ) : (
         <Typography>Loading...</Typography>

@@ -19,7 +19,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     // Optionally persist auth state in localStorage
     const storedToken = localStorage.getItem('token');
-    if (storedToken) setToken(storedToken);
+    if (storedToken) {
+      setToken(storedToken)
+      login(storedToken);
+    };
   }, []);
 
   const login = async (newToken: string) => {

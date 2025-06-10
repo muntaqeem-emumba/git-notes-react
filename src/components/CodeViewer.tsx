@@ -3,6 +3,18 @@ import axios from "axios";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+const tempCode = `{
+  "name": "vercel-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@8.3.1",
+  "dependencies": {
+    "lerna": "5.6.2"
+  },
+  "devDependencies": {}
+}`;
+
 export default function CodeViewer({
   rawUrl,
   language,
@@ -17,19 +29,22 @@ export default function CodeViewer({
   const [code, setCode] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
   useEffect(() => {
     const fetchGists = async () => {
       try {
         //read the file from the rawUrl
 				//use direct axios
-        console.log(filename);
         const response = await axios.get(rawUrl);
         const data = response.data as string;
-        console.log(data);
-        setCode(data);
+        console.log(filename);
+        console.log('data for file ', filename, ' ', typeof(data));
+        if(!filename.includes('.geojson')) {
+          setCode(data);
+        } else {
+          setCode(tempCode)
+        }
       } catch (error) {
-        console.error("Error fetching code:", error);
+        console.error("Error fetching code for:", filename, error);
         setError("Failed to load code.");
       } finally {
         setLoading(false);
@@ -39,7 +54,7 @@ export default function CodeViewer({
     fetchGists();
   }, []);
 
-  if (loading) return <p>Loading gist...</p>;
+  if (loading) return <p style={{ height: height || "auto", width: "100%",}}>Loading gist...</p>;
   if (error) return <p>{error}</p>;
   return (
     <>
@@ -58,7 +73,7 @@ export default function CodeViewer({
           width: "100%",
         }}
       >
-        {code}
+        {code || tempCode}
       </SyntaxHighlighter>
     </>
   );

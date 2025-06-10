@@ -42,18 +42,6 @@ const CreateGist: React.FC = () => {
       />
 
       <Box mt={2} height="400px">
-        {/* <Editor
-          height="100%"
-          defaultLanguage="json"
-          value={content}
-          onChange={(value) => setContent(value || '')}
-          theme="github-light"
-          options={{
-            selectOnLineNumbers: true,
-            minimap: { enabled: false },
-            fontSize: 14,
-          }}
-        /> */}
         <SyntaxHighlighter
 					language="json"
 					customStyle={{ margin:10, padding: 16, height: '90%' }}

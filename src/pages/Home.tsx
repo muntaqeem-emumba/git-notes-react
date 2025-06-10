@@ -19,23 +19,6 @@ export default function Home() {
 	const { searchTerm } = useSearch();
   const [page, setPage] = useState(1);
 	const rowsPerPage = 9;
-	// useEffect(() => {
-	// 	const fetchGists = async () => {
-	// 		try {
-	// 			const response = await api.get<Gist[]>(`/gists/public?per_page=${rowsPerPage}&page=1`);
-	// 			console.log(response.data);
-	// 			setGists(response.data);
-	// 			setFilteredList(response.data);
-	// 		} catch (error) {
-	// 			console.error('Error fetching gists:', error);
-	// 			setError('Failed to load gists.');
-	// 		} finally {
-	// 			setLoading(false);
-	// 		}
-	// 	};
-
-	// 	fetchGists();
-	// }, []);
 
 	useEffect(() => {
 		const fetchGists = async () => {
@@ -60,11 +43,16 @@ export default function Home() {
       setFilteredList(gists);
     } else {
       const lowerSearch = searchTerm.toLowerCase();
+			if(!lowerSearch) setFilteredList(gists);
+			console.log('searching for', lowerSearch);
+			console.log('gists before search', gists);
+			// Filter gists based on owner login or file names
       const filtered = gists.filter(
         (gist) =>
           gist.owner.login.toLowerCase().includes(lowerSearch) ||
-					gist.files && Object.keys(gist.files).filter((key) => key.toLowerCase().includes(lowerSearch))
+					gist.files && Object.keys(gist.files).some((key) => key.toLowerCase().includes(lowerSearch))
       );
+			console.log('filtered gists after search', filtered);
       setFilteredList(filtered);
     }
   }, [searchTerm]);
