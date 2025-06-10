@@ -49,7 +49,7 @@ const CreateGist: React.FC = () => {
           showLineNumbers={true}
         >
           {content}
-        </SyntaxHighlighter>
+        </SyntaxHighlighter> 
       </Box>
 
       <Box display="flex" justifyContent="space-between" mt={2}>
