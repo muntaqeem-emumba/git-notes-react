@@ -13,7 +13,7 @@ export default function CustomizedButtons() {
 
   function handleLogin() {
     console.log('Logging in...');
-    login('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');
+    login(import.meta.env.GITHUB_ACCESS_TOKEN as string);
   }
 
   return (
