@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import GistGrid from "../components/GistGrid";
 import GistList from "../components/GistList";
 import api from "../services/api";
-import { useSearch } from "../contexts/SearchContext";
 import type Gist from "../interfaces/gist";
 import CustomPagination from "../components/Pagination";
+import useSearchStore from "../stores/SearchStore";
   
 export default function Home() {
 	const [isList, setIsList] = useState<boolean | null>(true);
@@ -16,7 +16,7 @@ export default function Home() {
 	const [filteredList, setFilteredList] = useState<Gist[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
-	const { searchTerm } = useSearch();
+	const { searchTerm } = useSearchStore();
   const [page, setPage] = useState(1);
 	const rowsPerPage = 9;
 

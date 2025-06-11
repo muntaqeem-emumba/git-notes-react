@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import ShareIcon from '@mui/icons-material/Share';
-import { useAuth } from '../contexts/AuthContext';
 import type Gist from '../interfaces/gist';
 import { useEffect, useState } from 'react';
 import CodeViewer from '../components/CodeViewer';
@@ -18,9 +17,10 @@ import api from '../services/api';
 import { formatDistanceToNow } from 'date-fns';
 // import CustomPagination from '../components/Pagination';
 import { useNavigate } from 'react-router-dom';
+import { useAuthData } from '../stores/AuthStore';
 
 export default function Profile() {
-  const { userData } = useAuth();
+  const { userData } = useAuthData();
   const [gists, setGists] = useState<Gist[]>([]);
   const navigate = useNavigate();
   // const [loading, setLoading] = useState<boolean>(true);

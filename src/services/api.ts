@@ -25,6 +25,8 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     // Get token from localStorage
+    console.log('Request interceptor triggered');
+    console.log('Current localStorage token:', localStorage.getItem('token'));
     const token = localStorage.getItem('token');
     
     // If token exists, add it to headers

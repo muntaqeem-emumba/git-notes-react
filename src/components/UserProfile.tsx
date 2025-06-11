@@ -1,11 +1,12 @@
 import { Box, Divider, Menu, MenuItem, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import { useState } from "react";
-import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuthActions, useAuthData } from "../stores/AuthStore";
 
 export default function UserProfile() {
-  const { logout, userData } = useAuth();
+  const { userData } = useAuthData();
+  const { logout } = useAuthActions();
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const tempCode = `{
   "name": "vercel-monorepo",
@@ -60,7 +59,6 @@ export default function CodeViewer({
     <>
       <SyntaxHighlighter
         language={language || "text"}
-        style={atomOneLight}
         showInlineLineNumbers={true}
         showLineNumbers={true}
         customStyle={{

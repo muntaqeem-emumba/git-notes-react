@@ -8,14 +8,14 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import LoginButton from "./LoginButton";
 import UserProfile from "./UserProfile";
-import { useAuth } from "../contexts/AuthContext";
-import { useSearch } from "../contexts/SearchContext";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Search, SearchIconWrapper, StyledInputBase } from "./SearchComponents";
+import { useAuthData } from "../stores/AuthStore";
+import useSearchStore from "../stores/SearchStore";
 function HeaderBar() {
-  const { isLoggedIn } = useAuth();
-  const { setSearchTerm } = useSearch();
+  const { isLoggedIn } = useAuthData();
+  const { setSearchTerm } = useSearchStore();
   const [debouncedValue, setDebouncedValue] = useState('');
   const [inputValue, setInputValue] = useState('');
 
